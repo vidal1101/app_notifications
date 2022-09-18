@@ -10,6 +10,20 @@ class PushNotificationService {
 
   static String? token ;
 
+  //handlers
+
+  static Future _backgroundHandler(RemoteMessage message )async{
+    print( 'en background handler: ${message.messageId}');
+  }
+
+  static Future _onMessageHandler(RemoteMessage message )async{
+    print( 'en mensaje handler: ${message.messageId}');
+  }
+
+  static Future _onMessageOpenApp(RemoteMessage message )async{
+    print( 'en open app handler: ${message.messageId}');
+  }
+
 
 
   static Future initializedApp()async{
@@ -19,6 +33,12 @@ class PushNotificationService {
     token = await FirebaseMessaging.instance.getToken();
 
     print('token del dispositivo:  ${token}');
+
+    //handler
+    FirebaseMessaging.onBackgroundMessage( _backgroundHandler );
+    FirebaseMessaging.onMessage.listen( _onMessageHandler );
+    FirebaseMessaging.onMessageOpenedApp.listen( _onMessageOpenApp );
+
 
     //local notifications
   }
