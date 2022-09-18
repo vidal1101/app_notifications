@@ -8,7 +8,12 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('test notifications'),
       ),
-      body: Center(child: Text('home screen')),
+      body: Center(
+        child: Text('home screen', 
+         style:  TextStyle( 
+          fontSize:  20 ,
+          fontWeight: FontWeight.bold ),
+         )),
     );
   }
 }

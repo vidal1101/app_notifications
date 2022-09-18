@@ -7,9 +7,11 @@ class Messagescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('mensaje'),
+        title: Text('Message'),
       ),
-      body:  Center(child: Text('hola mensaje')),
+      body:  Center(child: Text('hola mensaje', style:  TextStyle( 
+          fontSize:  20 ,
+          fontWeight: FontWeight.bold ),)),
     );
   }
 }
