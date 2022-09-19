@@ -12,6 +12,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = new GlobalKey<ScaffoldMessengerState>();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -21,6 +24,10 @@ class _MyAppState extends State<MyApp> {
     PushNotificationService.getmessageStream.listen((message) { 
 
       print('my app: $message');
+
+      navigatorKey.currentState?.pushNamed('mensaje', arguments:  message);
+      final  snackBar = SnackBar(content: Text(message));
+      scaffoldMessengerKey.currentState?.showSnackBar(snackBar);
     });
   }
 
@@ -35,6 +42,8 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       initialRoute: 'home',
+      navigatorKey: navigatorKey,//navegar
+      scaffoldMessengerKey: scaffoldMessengerKey ,//mostrar snacks
       routes: {
         'home'      : (context) => HomePage(),
         'mensaje'   :(context) => Messagescreen(), 

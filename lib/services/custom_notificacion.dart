@@ -23,18 +23,21 @@ class PushNotificationService {
   //handler
   static Future _backgroundHandler(RemoteMessage message )async{
     //print( 'en background handler: ${message.messageId}');
-    _messagestreamController.add(message.notification?.body ?? 'not title' );
+    _messagestreamController.add(message.data['producto'] ?? 'not data' );
   }
 
   static Future _onMessageHandler(RemoteMessage message )async{
     //print( 'en mensaje handler: ${message.messageId}');
-    _messagestreamController.add(message.notification?.body ?? 'not title' );
+    //_messagestreamController.add(message.notification?.body ?? 'not title' );
+    print(message.data['producto']);
+    _messagestreamController.add(message.data['producto'] ?? 'not data' );
 
   }
 
   static Future _onMessageOpenApp(RemoteMessage message )async{
     //print( 'en open app handler: ${message.messageId}');
-    _messagestreamController.add(message.notification?.body ?? 'not title' );
+    print(message.data);
+    _messagestreamController.add(message.data['producto'] ?? 'not data' );
 
   }
 
