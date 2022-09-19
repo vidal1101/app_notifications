@@ -1,10 +1,29 @@
 import 'package:app_notifications/main.dart';
 import 'package:app_notifications/pages/home_page.dart';
 import 'package:app_notifications/pages/message_screen.dart';
+import 'package:app_notifications/services/custom_notificacion.dart';
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+    PushNotificationService.getmessageStream.listen((message) { 
+
+      print('my app: $message');
+    });
+  }
+
 
   // This widget is the root of your application.
   @override

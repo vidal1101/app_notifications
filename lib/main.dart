@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:app_notifications/app.dart';
 
 void main()async {
+
+  
   WidgetsFlutterBinding.ensureInitialized();
+  
   await PushNotificationService.initializedApp();
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 
