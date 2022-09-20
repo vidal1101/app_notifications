@@ -8,11 +8,12 @@ import 'package:firebase_core/firebase_core.dart';
 
 class PushNotificationService {
 
-  static FirebaseMessaging messaging= FirebaseMessaging.instance;
+  static FirebaseMessaging messaging= FirebaseMessaging.instance;// instancia de firebase messagging 
 
   static String? token ;
 
   static StreamController<String> _messagestreamController = new StreamController.broadcast();
+  //obtener la informacion y navegar a otra pantalla
 
 
   static Stream<String> get getmessageStream {
@@ -21,11 +22,17 @@ class PushNotificationService {
 
 
   //handler
-  static Future _backgroundHandler(RemoteMessage message )async{
+  /**
+   * cuando la app esta cerrada pero en memoria ram 
+   */
+  static Future _backgroundHandler(RemoteMessage message )async{ 
     //print( 'en background handler: ${message.messageId}');
     _messagestreamController.add(message.data['producto'] ?? 'not data' );
   }
 
+/**
+ * cuando la app esta en uso
+ */
   static Future _onMessageHandler(RemoteMessage message )async{
     //print( 'en mensaje handler: ${message.messageId}');
     //_messagestreamController.add(message.notification?.body ?? 'not title' );
@@ -34,6 +41,9 @@ class PushNotificationService {
 
   }
 
+/**
+ * cuando esta cerrada y quitada de memoria
+ */
   static Future _onMessageOpenApp(RemoteMessage message )async{
     //print( 'en open app handler: ${message.messageId}');
     print(message.data);
